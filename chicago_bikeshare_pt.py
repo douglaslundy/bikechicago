@@ -172,7 +172,7 @@ input("Aperte Enter para continuar...")
 male, female = count_gender(data_list)
 print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "Escreva sua resposta aqui."
+answer = "Porque em varias situações o Gênero não e informado, \nsendo assim existem mais registros na base do que a soma dos Gêneros"
 print("resposta:", answer)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -189,6 +189,30 @@ min_trip = 0.
 max_trip = 0.
 mean_trip = 0.
 median_trip = 0.
+duracao = 0.
+
+for trip_duration in trip_duration_list:
+
+	trip_duration = float(trip_duration)
+	duracao += trip_duration
+
+	if min_trip == 0.:
+		min_trip = trip_duration
+	if max_trip == 0.:
+		max_trip = trip_duration
+	if trip_duration < min_trip:
+		min_trip = trip_duration
+	if trip_duration > max_trip:
+		max_trip = trip_duration
+		pass
+mean_trip = round(float(duracao/len(trip_duration_list)))
+
+itens = len(trip_duration_list)
+ordenada = trip_duration_list
+ordenada.sort()
+
+
+median_trip = ordenada[round((itens/2))]
 
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
