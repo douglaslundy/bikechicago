@@ -42,11 +42,11 @@ input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 
-for genre_first_twenty in data_list[0:20]:
-	print(genre_first_twenty[6])
 
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 
+for genre_first_twenty in data_list[0:20]:
+	print(genre_first_twenty[6])
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
@@ -57,8 +57,8 @@ input("Aperte Enter para continuar...")
 def column_to_list(data, index):
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-    for d in data[index]:
-    	column_list.append(d)
+    for d in data:
+    	column_list.append(d[index])
     return column_list
 
 
@@ -79,6 +79,13 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
+for d in data_list:
+	if d[-2] == "Male":
+		male += 1
+	if d[-2] == "Female":
+		female += 1
+	pass
+
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
@@ -96,6 +103,12 @@ input("Aperte Enter para continuar...")
 def count_gender(data_list):
     male = 0
     female = 0
+
+    for gender in data_list:
+    	if gender[-2] == "Male":
+    		male += 1
+    	if gender[-2] == "Female":
+    		female += 1
     return [male, female]
 
 
@@ -115,6 +128,15 @@ input("Aperte Enter para continuar...")
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
     answer = ""
+    gender = count_gender(data_list)
+    if gender[0] > gender[1]:
+    	answer = "Male"
+    if gender[0] < gender[1]:
+    	answer = "Female"
+    if gender[0] == gender[1]:
+    	answer = "Equal"
+    	pass
+
     return answer
 
 
