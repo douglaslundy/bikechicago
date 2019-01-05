@@ -55,6 +55,19 @@ input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index):
+
+    """
+        Função:
+            cria uma lista com determinada coluna
+        data:
+            Lista de dados
+        index:
+            representa coluna na lista
+        Retorna:
+          Uma lista de valores de determinada coluna
+
+    """
+
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     for d in data:
@@ -101,6 +114,17 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data_list):
+
+    """
+        Função:
+            funcao conta quantidade por genero 
+        data_list:
+            Lista de dados
+        Retorna:
+            quantidade de pessoas por genero
+
+    """
+
     male = 0
     female = 0
 
@@ -127,6 +151,18 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
+
+    """
+        Função:
+            Utiliza a funcao count_gender para calcular a  quantidade de pessoas por genero 
+            e verifica qual e mais porpular     ou se são iguais
+        data_list:
+            Lista de dados
+        Retorna:
+            qual genero e mais popular ou se ambos são iguais
+
+    """
+
     answer = ""
     gender = count_gender(data_list)
     if gender[0] > gender[1]:
@@ -165,6 +201,43 @@ input("Aperte Enter para continuar...")
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 
+def count_type(data_list):
+    
+    """
+        Função:
+            Conta os typos de usuarios existentes
+        data_list:
+            Lista de dados
+        Retorna:
+            Quantidade de usuarios por tipo
+
+    """
+
+    dependent = 0
+    customer = 0
+    subscriber = 0
+
+    for t in data_list:
+        if t == "Dependent":
+            dependent += 1
+        if t == "Customer":
+            customer += 1
+        if t == "Subscriber":
+            subscriber += 1
+    return [dependent, customer, subscriber]
+
+
+type_list = column_to_list(data_list, -3)
+types = ["Dependent", "Customer", "Subscriber"]
+quantity = count_type(type_list)
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.xlabel('Quantidade')
+plt.ylabel('Tipos de Usuário')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por Tipos de Usuário')
+plt.show(block=True)
+
 
 input("Aperte Enter para continuar...")
 # TAREFA 8
@@ -193,26 +266,35 @@ duracao = 0.
 
 for trip_duration in trip_duration_list:
 
-	trip_duration = float(trip_duration)
-	duracao += trip_duration
+    trip_duration = float(trip_duration)
+    duracao += trip_duration
 
-	if min_trip == 0.:
-		min_trip = trip_duration
-	if max_trip == 0.:
-		max_trip = trip_duration
-	if trip_duration < min_trip:
-		min_trip = trip_duration
-	if trip_duration > max_trip:
-		max_trip = trip_duration
-		pass
-mean_trip = round(float(duracao/len(trip_duration_list)))
+    if min_trip == 0.:
+        min_trip = trip_duration
+    if max_trip == 0.:
+        max_trip = trip_duration
+    if trip_duration < min_trip:
+        min_trip = trip_duration
+    if trip_duration > max_trip:
+        max_trip = trip_duration
+        pass
+mean_trip = round(float(duracao / len(trip_duration_list)))
 
 itens = len(trip_duration_list)
-ordenada = trip_duration_list
-ordenada.sort()
+ordenada = sorted(trip_duration_list, key=int)
 
 
-median_trip = ordenada[round((itens/2))]
+if itens % 2 == 0:
+    index = int((((itens / 2)) + ((itens / 2) + 1) / 2))
+else:
+    index = int((itens / 2))
+
+median_trip = ordenada[index]
+
+min_trip = int(min_trip)
+max_trip = int(max_trip)
+mean_trip = int(mean_trip)
+median_trip = int(median_trip)
 
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
@@ -229,7 +311,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 10
 # Gênero é fácil porque nós temos apenas algumas opções. E quanto a start_stations? Quantas opções ele tem?
 # TODO: Verifique quantos tipos de start_stations nós temos, usando set()
-start_stations = set()
+start_stations = set(column_to_list(data_list, 3))
 
 print("\nTAREFA 10: Imprimindo as start stations:")
 print(len(start_stations))
@@ -258,11 +340,26 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
 # para que nós possamos usar essa função com outra categoria de dados.
 print("Você vai encarar o desafio? (yes ou no)")
-answer = "no"
+answer = "yes"
 
 def count_items(column_list):
+    """
+        Função:
+            Conta os typos de dados e quantidade de dados por typo
+        column_list:
+            Lista de dados de determinada coluna
+        Retorna:
+            Quantidade de tipos, e quantidade de dados por tipo
+
+    """
     item_types = []
     count_items = []
+
+    item_types = set(column_list)
+
+    for types in item_types:
+        count_items.append(column_list.count(types))
+        
     return item_types, count_items
 
 
