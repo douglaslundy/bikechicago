@@ -30,7 +30,7 @@ input("Aperte Enter para continuar...")
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 
 for first_twenty in data_list[1:21]:
-	print(first_twenty)
+    print(first_twenty)
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
@@ -46,7 +46,7 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 
 for genre_first_twenty in data_list[0:20]:
-	print(genre_first_twenty[6])
+    print(genre_first_twenty[6])
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
@@ -56,22 +56,21 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index):
 
+
     """
-        Função:
-            cria uma lista com determinada coluna
-        data:
-            Lista de dados
-        index:
-            representa coluna na lista
-        Retorna:
-          Uma lista de valores de determinada coluna
+    Cria uma lista com determinada coluna
+    Argumentos:
+        data: Lista de dados
+        index: representa coluna na lista
+    Retorna:
+        Uma lista de valores de determinada coluna
 
     """
 
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-    for d in data:
-    	column_list.append(d[index])
+    for line in data:
+        column_list.append(line[index])
     return column_list
 
 
@@ -92,12 +91,11 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
-for d in data_list:
-	if d[-2] == "Male":
-		male += 1
-	if d[-2] == "Female":
-		female += 1
-	pass
+for line in data_list:
+    if line[-2] == "Male":
+        male += 1
+    if line[-2] == "Female":
+        female += 1
 
 
 # Verificando o resultado
@@ -116,12 +114,11 @@ input("Aperte Enter para continuar...")
 def count_gender(data_list):
 
     """
-        Função:
-            funcao conta quantidade por genero 
-        data_list:
-            Lista de dados
-        Retorna:
-            quantidade de pessoas por genero
+    Conta a quantidade de registros por gênero
+    Argumentos:
+        data_list: E a lista de dados para contagem
+    Retorna:
+        quantidade de pessoas por gênero
 
     """
 
@@ -129,10 +126,10 @@ def count_gender(data_list):
     female = 0
 
     for gender in data_list:
-    	if gender[-2] == "Male":
-    		male += 1
-    	if gender[-2] == "Female":
-    		female += 1
+        if gender[-2] == "Male":
+            male += 1
+        if gender[-2] == "Female":
+            female += 1
     return [male, female]
 
 
@@ -153,25 +150,24 @@ input("Aperte Enter para continuar...")
 def most_popular_gender(data_list):
 
     """
-        Função:
-            Utiliza a funcao count_gender para calcular a  quantidade de pessoas por genero 
-            e verifica qual e mais porpular     ou se são iguais
-        data_list:
-            Lista de dados
-        Retorna:
-            qual genero e mais popular ou se ambos são iguais
+    Utiliza a funcao count_gender para calcular a quantidade de pessoas por gênero 
+    e verifica qual e mais popular ou se ambas são iguais
+    Argumentos:
+        data_list: Lista com dados para calculo
+    Retorna:
+        Qual gênero e mais popular, ou se ambos são iguais
 
     """
 
     answer = ""
     gender = count_gender(data_list)
     if gender[0] > gender[1]:
-    	answer = "Male"
+        answer = "Male"
     if gender[0] < gender[1]:
-    	answer = "Female"
+        answer = "Female"
     if gender[0] == gender[1]:
-    	answer = "Equal"
-    	pass
+        answer = "Equal"
+        pass
 
     return answer
 
@@ -202,14 +198,13 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 7: Verifique o gráfico!")
 
 def count_type(data_list):
-    
+
     """
-        Função:
-            Conta os typos de usuarios existentes
-        data_list:
-            Lista de dados
-        Retorna:
-            Quantidade de usuarios por tipo
+    Conta os typos de usuarios existentes
+    Argumentos:
+        data_list: Lista com dados para contagem
+    Retorna:
+        Quantidade de usuarios por tipo
 
     """
 
@@ -343,15 +338,16 @@ print("Você vai encarar o desafio? (yes ou no)")
 answer = "yes"
 
 def count_items(column_list):
-    """
-        Função:
-            Conta os typos de dados e quantidade de dados por typo
-        column_list:
-            Lista de dados de determinada coluna
-        Retorna:
-            Quantidade de tipos, e quantidade de dados por tipo
 
     """
+    Conta os typos de dados e quantidade de dados por typo
+    Argumentos:
+        column_list: Lista de dados de determinada coluna
+    Retorna:
+        Quantidade de tipos, e quantidade de dados por tipo
+
+    """
+
     item_types = []
     count_items = []
 
