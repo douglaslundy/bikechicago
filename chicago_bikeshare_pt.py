@@ -212,12 +212,12 @@ def count_type(data_list):
     customer = 0
     subscriber = 0
 
-    for t in data_list:
-        if t == "Dependent":
+    for typer in data_list:
+        if typer == "Dependent":
             dependent += 1
-        if t == "Customer":
+        if typer == "Customer":
             customer += 1
-        if t == "Subscriber":
+        if typer == "Subscriber":
             subscriber += 1
     return [dependent, customer, subscriber]
 
@@ -278,13 +278,11 @@ mean_trip = round(float(duracao / len(trip_duration_list)))
 itens = len(trip_duration_list)
 ordenada = sorted(trip_duration_list, key=int)
 
-
+index = int((itens / 2))
 if itens % 2 == 0:
-    index = int((((itens / 2)) + ((itens / 2) + 1) / 2))
+    median_trip = ((ordenada[index] + ordenada[(index + 1)]) / 2)
 else:
-    index = int((itens / 2))
-
-median_trip = ordenada[index]
+    median_trip = ordenada[index]
 
 min_trip = int(min_trip)
 max_trip = int(max_trip)
